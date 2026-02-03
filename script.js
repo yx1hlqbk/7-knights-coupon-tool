@@ -6,8 +6,8 @@ const CONFIG = {
     REDEEM_API_URL: 'https://coupon.netmarble.com/api/coupon',
     GAME_CODE: 'tskgb',
     LANG_CODE: 'ZH_TW',
-    // CORS 代理（如果需要）
-    CORS_PROXY: '', // 例如: 'https://cors-anywhere.herokuapp.com/'
+    // CORS 代理（已啟用以解決跨域問題）
+    CORS_PROXY: 'https://api.allorigins.win/raw?url=',
 };
 
 // ==================== 狀態管理 ====================
@@ -235,9 +235,7 @@ async function redeemCoupon(index) {
 
 // ==================== 輔助函數 ====================
 function buildApiUrl(couponCode, type = 'verify') {
-    const baseUrl = type === 'verify'
-        ? CONFIG.CORS_PROXY + CONFIG.VERIFY_API_URL
-        : CONFIG.CORS_PROXY + CONFIG.REDEEM_API_URL;
+    let apiUrl;
 
     // 驗證 API 使用 GET，需要 query parameters
     if (type === 'verify') {
@@ -247,11 +245,18 @@ function buildApiUrl(couponCode, type = 'verify') {
             langCd: CONFIG.LANG_CODE,
             pid: state.pid,
         });
-        return `${baseUrl}?${params.toString()}`;
+        apiUrl = `${CONFIG.VERIFY_API_URL}?${params.toString()}`;
+    } else {
+        // 兌換 API 使用 POST
+        apiUrl = CONFIG.REDEEM_API_URL;
     }
 
-    // 兌換 API 使用 POST，只需要 base URL
-    return baseUrl;
+    // 如果有 CORS 代理，需要對 URL 進行編碼
+    if (CONFIG.CORS_PROXY) {
+        return CONFIG.CORS_PROXY + encodeURIComponent(apiUrl);
+    }
+
+    return apiUrl;
 }
 
 function parseErrorMessage(data) {

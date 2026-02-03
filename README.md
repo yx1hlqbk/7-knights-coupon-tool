@@ -6,7 +6,7 @@
 
 **GitHub Pages**: [https://yx1hlqbk.github.io/7-knights-coupon-tool/](https://yx1hlqbk.github.io/7-knights-coupon-tool/)
 
-> ⚠️ **重要**：使用前請先安裝 CORS 瀏覽器擴充功能（詳見下方說明）
+✅ 已啟用 CORS 代理，可直接使用，無需安裝擴充功能！
 
 ## 🎯 功能特色
 
