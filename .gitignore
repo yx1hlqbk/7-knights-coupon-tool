@@ -1,0 +1,21 @@
+# 作業系統相關
+.DS_Store
+Thumbs.db
+
+# 編輯器相關
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 暫存檔案
+*.log
+*.tmp
+
+# Node.js（如果未來需要）
+node_modules/
+package-lock.json
+
+# 個人設定（避免上傳個人資料）
+config.local.js

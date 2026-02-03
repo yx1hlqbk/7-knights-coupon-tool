@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七騎士序號兌換系統</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎮 七騎士序號兌換系統</h1>
+            <p class="subtitle">批次驗證與兌換遊戲序號</p>
+        </header>
+
+        <div class="main-card">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="pid">
+                        <span class="label-icon">👤</span>
+                        會員號碼 (PID)
+                    </label>
+                    <input 
+                        type="text" 
+                        id="pid" 
+                        placeholder="請輸入您的會員號碼"
+                        autocomplete="off"
+                    >
+                    <small class="hint">例如：D3AC10BF183946438EFA9D4941BD1414</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="coupons">
+                        <span class="label-icon">🎫</span>
+                        序號列表
+                        <span class="count-badge" id="couponCount">0 組</span>
+                    </label>
+                    <textarea 
+                        id="coupons" 
+                        rows="8" 
+                        placeholder="請輸入序號，每行一個&#10;例如：&#10;CHLOEMAYALICE&#10;EXAMPLE123&#10;TESTCODE456"
+                    ></textarea>
+                    <small class="hint">每行輸入一組序號，支援批次處理</small>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" id="verifyBtn">
+                        <span class="btn-icon">🔍</span>
+                        驗證序號
+                    </button>
+                    <button class="btn btn-success" id="redeemBtn" disabled>
+                        <span class="btn-icon">✨</span>
+                        批次兌換
+                    </button>
+                    <button class="btn btn-secondary" id="clearBtn">
+                        <span class="btn-icon">🗑️</span>
+                        清除
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>處理結果</h2>
+                    <div class="stats" id="stats">
+                        <span class="stat stat-total">總計: <strong>0</strong></span>
+                        <span class="stat stat-success">成功: <strong>0</strong></span>
+                        <span class="stat stat-error">失敗: <strong>0</strong></span>
+                        <span class="stat stat-pending">待處理: <strong>0</strong></span>
+                    </div>
+                </div>
+
+                <div class="results-list" id="resultsList">
+                    <!-- 結果項目將動態插入這裡 -->
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 使用說明</h3>
+            <ul>
+                <li>輸入您的會員號碼（PID）</li>
+                <li>在序號列表中輸入要兌換的序號，每行一個</li>
+                <li>點擊「驗證序號」檢查序號狀態</li>
+                <li>驗證通過後，點擊「批次兌換」執行兌換</li>
+                <li>查看結果區域了解每個序號的處理狀態</li>
+            </ul>
+        </div>
+
+        <div class="cors-warning" id="corsWarning" style="display: none;">
+            <div class="warning-content">
+                <span class="warning-icon">⚠️</span>
+                <div>
+                    <strong>CORS 限制偵測</strong>
+                    <p>由於瀏覽器安全限制，無法直接呼叫 API。請考慮使用以下解決方案：</p>
+                    <ol>
+                        <li>安裝瀏覽器擴充功能（如 CORS Unblock）</li>
+                        <li>使用後端代理伺服器</li>
+                        <li>聯繫開發者取得完整版本</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2026 七騎士序號兌換系統 | 僅供個人使用</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
